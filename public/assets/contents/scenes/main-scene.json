@@ -1,8 +1,118 @@
 {
-    "key": "MainScene",
-    "assets": [
-        { "key": "dwarf", "type": "sprite", "path": "graphics/dwarf_sprite.png" },
-        { "key": "elf", "type": "sprite", "path": "graphics/elf_sprite.png" },
-        { "key": "prince", "type": "sprite", "path": "graphics/prince_sprite.png" }
+    "key": "main-scene",
+    "assets": {
+        "sprites": [
+            { 
+                "key": "dwarf", 
+                "type": "sprite", 
+                "path": "graphics/sprites/dwarf_sprite.png",
+                "config": { "frameWidth": 32, "frameHeight": 32 }
+            },
+            { 
+                "key": "elf", 
+                "type": "sprite", 
+                "path": "graphics/sprites/elf_sprite.png",
+                "config": { "frameWidth": 32, "frameHeight": 32 }
+            },
+            { 
+                "key": "prince", 
+                "type": "sprite", 
+                "path": "graphics/sprites/prince_sprite.png",
+                "config": { "frameWidth": 32, "frameHeight": 32 }
+            }
+        ]
+    },
+    "animations": {
+        "dwarf": [
+            {
+                "key": "idle",
+                "frames": { "start": 0, "end": 3 },
+                "frameRate": 5,
+                "repeat": -1
+            },
+            {
+                "key": "sprint",
+                "frames": { "start": 25, "end": 31 },
+                "frameRate": 5,
+                "repeat": -1
+            },
+            {
+                "key": "jump",
+                "frames": [6, 7, 8, 9, 12, 13, 14, 15],
+                "frameRate": 5,
+                "repeat": -1
+            }
+        ],
+        "elf": [
+            {
+                "key": "idle",
+                "frames": { "start": 0, "end": 3 },
+                "frameRate": 5,
+                "repeat": -1
+            },
+            {
+                "key": "sprint",
+                "frames": { "start": 25, "end": 31 },
+                "frameRate": 5,
+                "repeat": -1
+            },
+            {
+                "key": "jump",
+                "frames": [6, 7, 8, 9, 12, 13, 14, 15],
+                "frameRate": 5,
+                "repeat": -1
+            }
+        ],
+        "prince": [
+            {
+                "key": "idle",
+                "frames": { "start": 0, "end": 3 },
+                "frameRate": 5,
+                "repeat": -1
+            },
+            {
+                "key": "sprint",
+                "frames": { "start": 25, "end": 31 },
+                "frameRate": 5,
+                "repeat": -1
+            },
+            {
+                "key": "jump",
+                "frames": [6, 7, 8, 9, 12, 13, 14, 15],
+                "frameRate": 5,
+                "repeat": -1
+            }
+        ]
+    },
+    "entities": [
+        { 
+            "name": "dwarf",
+            "assets": "dwarf"
+        },
+        {
+            "name": "elf",
+            "assets": "elf"
+        },
+        {
+            "name": "prince",
+            "assets": "prince"
+        }
+    ],
+    "spawns": [
+        {
+            "entity": "dwarf",
+            "position": { "x": 100, "y": 100 },
+            "start": "jump"
+        },
+        {
+            "entity": "elf",
+            "position": { "x": 250, "y": 100 },
+            "start": "sprint"
+        },
+        {
+            "entity": "prince",
+            "position": { "x": 400, "y": 100 },
+            "start": "idle"
+        }
     ]
 }

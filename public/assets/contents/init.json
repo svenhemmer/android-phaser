@@ -2,5 +2,16 @@
     "scenes": [
         "main-scene"
     ],
-    "start": "main-scene"
+    "start": "main-scene",
+    "controls": {
+        "keyboard": true,
+        "touch": {
+            "joystick": false
+        },
+        "mouse": {
+            "move": false,
+            "drag": false,
+            "zoom": false
+        }
+    }
 }
