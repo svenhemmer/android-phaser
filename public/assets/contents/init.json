@@ -16,10 +16,10 @@
     },
     "audio": {
         "music": {
-            "volume": 1
+            "volume": 0.4
         },
         "sfx": {
-            "volume": 1
+            "volume": 0.4
         }
     }
 }
