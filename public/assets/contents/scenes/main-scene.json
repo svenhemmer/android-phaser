@@ -1,0 +1,8 @@
+{
+    "key": "MainScene",
+    "assets": [
+        { "key": "dwarf", "type": "sprite", "path": "graphics/dwarf_sprite.png" },
+        { "key": "elf", "type": "sprite", "path": "graphics/elf_sprite.png" },
+        { "key": "prince", "type": "sprite", "path": "graphics/prince_sprite.png" }
+    ]
+}

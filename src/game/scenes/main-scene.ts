@@ -7,7 +7,7 @@ export const createMainScene = (): Phaser.Types.Scenes.SceneType => {
 
 
   return {
-    key: 'MainScene',
+    key: 'boot-scene',
 
     create() {
         player = this.physics.add.sprite(400, 300, '');
