@@ -20,6 +20,13 @@
                 "path": "graphics/sprites/prince_sprite.png",
                 "config": { "frameWidth": 32, "frameHeight": 32 }
             }
+        ],
+        "music": [
+            {
+                "key": "main-theme",
+                "path": "music/blue-surprise.mp3",
+                "start": true
+            }
         ]
     },
     "animations": {

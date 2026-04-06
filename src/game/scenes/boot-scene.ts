@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { createProgressBar } from '../utils.ts/progress-bar';
 import type { ProgressBar } from '../../models/progress-bar';
 import { buildScene } from './scene-builder';
-import { getConfig, updateControls } from '../store/game-config';
+import { updateAudio, updateControls } from '../store/game-config';
 
 export const createBootScene = (): Phaser.Types.Scenes.SceneType => {
   let player: Phaser.GameObjects.Sprite | undefined;
@@ -33,6 +33,7 @@ export const createBootScene = (): Phaser.Types.Scenes.SceneType => {
         this.load.on('complete', () => { 
             const contents = this.cache.json.get('contents');
             updateControls(contents.controls);
+            updateAudio(contents.audio);
             switchScene(this, contents.start);
          });
 

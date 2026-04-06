@@ -9,6 +9,14 @@ const mainConfig = {
         touch: {
             joystick: false
         }
+    },
+    audio: {
+        music: {
+            volume: 0
+        },
+        sfx: {
+            volume: 0
+        }
     }
 }
 
@@ -18,4 +26,8 @@ export const getConfig = () => {
 
 export const updateControls = (controls: object) => {
     mainConfig.controls = { ...mainConfig.controls, ...controls}
+}
+
+export const updateAudio = (audio: object) => {
+    mainConfig.audio = { ...mainConfig.audio, ...audio}
 }

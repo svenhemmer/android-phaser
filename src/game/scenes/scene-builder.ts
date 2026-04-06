@@ -4,11 +4,12 @@ import { getConfig } from "../store/game-config";
 import { createJoystick } from "../controls/joystick";
 
 type Helper = {
-    shutdown: () => void;
-    initControls: () => void;
     createAnimations: () => void;
+    initControls: () => void;
     loadAssetsAfterContentFile: () => void;
     loadEntities: () => void;
+    playMusic: () => void;
+    shutdown: () => void;
     spawnEntities: () => void;
 }
 
@@ -16,14 +17,21 @@ export const buildScene = (key: string): Phaser.Types.Scenes.SceneType => {
     let progressBar: ProgressBar | undefined;
     let helper: Helper;
     let entityMap = new Map();
-    const loadedAssets: string[] = [];
+    const loadedTextures: string[] = [];
     let joystick: { getDirection: () => { x: number; y: number}};
+    let currentTrack: {
+        track?: Phaser.Sound.NoAudioSound | Phaser.Sound.HTML5AudioSound | Phaser.Sound.WebAudioSound;
+        key: string;
+    } = {
+        track: undefined,
+        key: ''
+    }
 
     const initHelper = (scene: Phaser.Scene): Helper => {
         return {
             shutdown: () => {
                 scene.cache.json.remove('scene-contents');
-                for (let asset in loadedAssets) {
+                for (let asset in loadedTextures) {
                     scene.textures.remove(asset);
                 }
             },
@@ -48,7 +56,13 @@ export const buildScene = (key: string): Phaser.Types.Scenes.SceneType => {
                 const contents = scene.cache.json.get('scene-contents');
                 for (let asset of contents.assets?.sprites) {
                     scene.load.spritesheet(asset.key, 'assets/' + asset.path, asset.config);
-                    loadedAssets.push(asset.key);
+                    loadedTextures.push(asset.key);
+                }
+                for (let track of contents.assets?.music) {
+                    scene.load.audio(track.key, 'assets/' + track.path);
+                    if (track.start) {
+                        currentTrack.key = track.key;
+                    }
                 }
                 scene.load.on('progress', (value: number) => { progressBar?.update(value) });
                 scene.load.once('complete', () => { 
@@ -57,6 +71,7 @@ export const buildScene = (key: string): Phaser.Types.Scenes.SceneType => {
                     helper.createAnimations();
                     helper.loadEntities();
                     helper.spawnEntities();
+                    helper.playMusic();
                 });
                 scene.load.start();
             },
@@ -78,6 +93,12 @@ export const buildScene = (key: string): Phaser.Types.Scenes.SceneType => {
             initControls: () => {
                 if (getConfig().controls.touch.joystick) {
                     joystick = createJoystick();
+                }
+            },
+            playMusic: () => {
+                if (!currentTrack.track) {
+                    currentTrack.track = scene.sound.add(currentTrack.key, { loop: true, volume: getConfig().audio.music.volume });
+                    currentTrack.track.play();
                 }
             }
         }
@@ -101,6 +122,7 @@ export const buildScene = (key: string): Phaser.Types.Scenes.SceneType => {
         update() {
             if (!!joystick) {
                 const direction = joystick.getDirection();
+                console.log(direction)
             }
         }
     }
