@@ -1,13 +1,7 @@
 {
-    "key": "main-scene",
+    "key": "second-scene",
     "assets": {
         "sprites": [
-            { 
-                "key": "dwarf", 
-                "type": "sprite", 
-                "path": "graphics/sprites/dwarf_sprite.png",
-                "config": { "frameWidth": 32, "frameHeight": 32 }
-            },
             { 
                 "key": "elf", 
                 "type": "sprite", 
@@ -24,32 +18,12 @@
         "music": [
             {
                 "key": "main-theme",
-                "path": "music/blue-surprise.mp3",
+                "path": "music/catch-the-mistery.mp3",
                 "start": true
             }
         ]
     },
     "animations": {
-        "dwarf": [
-            {
-                "key": "idle",
-                "frames": { "start": 0, "end": 3 },
-                "frameRate": 5,
-                "repeat": -1
-            },
-            {
-                "key": "sprint",
-                "frames": { "start": 25, "end": 31 },
-                "frameRate": 5,
-                "repeat": -1
-            },
-            {
-                "key": "jump",
-                "frames": [6, 7, 8, 9, 12, 13, 14, 15],
-                "frameRate": 5,
-                "repeat": -1
-            }
-        ],
         "elf": [
             {
                 "key": "idle",
@@ -92,10 +66,6 @@
         ]
     },
     "entities": [
-        { 
-            "name": "dwarf",
-            "assets": "dwarf"
-        },
         {
             "name": "elf",
             "assets": "elf"
@@ -107,22 +77,23 @@
     ],
     "spawns": [
         {
-            "entity": "dwarf",
-            "position": { "x": 100, "y": 100 },
+            "entity": "elf",
+            "position": { "x": 100, "y": 200 },
             "start": "jump"
         },
         {
             "entity": "elf",
-            "position": { "x": 250, "y": 100 },
+            "position": { "x": 250, "y": 150 },
             "start": "sprint"
         },
         {
             "entity": "prince",
-            "position": { "x": 400, "y": 100 },
+            "position": { "x": 400, "y": 250 },
             "start": "idle"
         }
     ],
     "scenes": {
-        "next": "second-scene"
+        "next": "main-scene",
+        "end": "credits"
     }
 }
